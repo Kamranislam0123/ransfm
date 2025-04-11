@@ -1140,7 +1140,7 @@ header.header-mobile.header-light #menu-btn:hover {
 }
 
 header.header-mobile.header-light #menu-btn {
-  color: #222;
+  color: #000000;
 }
 
 
@@ -1186,6 +1186,7 @@ header.header-mobile.header-center #logo-center{
 section {
   padding: 100px 0 100px 0;
 }
+
 
 #content.zebra section:nth-child(even) {
   background: #fcfcfc;
