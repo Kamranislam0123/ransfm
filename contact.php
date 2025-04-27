@@ -1,33 +1,25 @@
 <?php
-$subject = 'New Contact Message'; // Subject of your email
-$to = 'kamranislam8@gmail.com';  //Recipient's E-mail
+$subject = 'New Contact Message'; 
+$to = 'kamranislam8@gmail.com'; 
 
-$emailTo = $_POST['email'];
-$name = $_POST['name'];
-$email = $_POST['email'];
-$phone = $_POST['phone'];
-$msg = $_POST['message'];
+$name = $_POST['name'] ?? '';
+$email = $_POST['email'] ?? '';
+$phone = $_POST['phone'] ?? '';
+$msg = $_POST['message'] ?? '';
 
-$email_from = $name. ' ' . '<'.$email.'>';
+$headers  = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
+$headers .= "From: ".$name." <".$email.">" . "\r\n";
+$headers .= "Return-Path: ".$email . "\r\n";
 
-$headers = "MIME-Version: 1.1";
-$headers .= "Content-type: text/html; charset=iso-8859-1";
-$headers .= "From: ".$name.'<'.$email.'>'."\r\n"; // Sender's E-mail
-$headers .= "Return-Path:"."From:" . $email;
+$message  = 'Name: ' . $name . "<br>";
+$message .= 'Email: ' . $email . "<br>";
+$message .= 'Phone: ' . $phone . "<br>";
+$message .= 'Message: ' . $msg . "<br>";
 
-$message .= 'Name : ' . $name . "\n";
-$message .= 'Email : ' . $email . "\n";
-$message .= 'Phone : ' . $phone . "\n";
-$message .= 'Message : ' . $msg;
-
-if (@mail($to, $subject, $message, $email_from))
-{
-	// Transfer the value 'sent' to ajax function for showing success message.
-	echo 'sent';
-}
-else
-{
-	// Transfer the value 'failed' to ajax function for showing error message.
-	echo 'failed';
+if (mail($to, $subject, $message, $headers)) {
+    echo 'sent';
+} else {
+    echo 'failed';
 }
 ?>
